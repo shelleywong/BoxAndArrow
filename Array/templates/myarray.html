@@ -1,0 +1,205 @@
+<!--
+ Copyright (c) 2021, Shelley Wong
+ All rights reserved.
+
+ This source code is licensed under the BSD-style license found in the
+ LICENSE file in the root directory of this source tree.
+
+ file: Array/templates/myarray.html
+
+ * This file was adapted from the Emscripten src/shell_minimal.html example:
+ https://github.com/emscripten-core/emscripten/blob/master/src/shell_minimal.html 
+
+ * The file includes a slideshow based off of the JSAV slideshow demonstration:
+ https://github.com/vkaravir/JSAV/blob/master/examples/slideshow.html  
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta charset="utf-8">
+    <title>Array Example</title>
+    <link rel="stylesheet" href="static/css/JSAV.css" type="text/css" 
+        media="screen" title="JSAV css" charset="utf-8" />
+    <style>
+    /* Array style */ 
+    body {
+        background-color: #e4e6e6;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    table {
+        margin: 10px;
+    }
+
+    td {
+        padding: 8px;
+    }
+
+    .header {
+        background-color: #8c2332;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .paragraph {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .button {
+        background-color: #8c2332;
+        color: #ffffff;
+        margin-left: 40px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        border-radius: 5px;
+        border-color: #8c2332;
+        font-family: 'Monaco', monospace;
+    }
+
+    button:disabled,
+    button[disabled]{
+        background-color: #bf5665;
+        color: #cccccc;
+    }
+
+    .form {
+        margin-left: 30px;
+        line-height: 1.6;
+    }
+
+    #arrayvals {
+        padding: 10px;
+    }
+
+    /* JSAV style */
+    #container {
+        width: 98%;
+        position: relative;
+    }
+    .jsavcounter {
+        position: absolute;
+        top: 15px;
+    }
+    .jsavcanvas {
+        height: 300px;
+    }
+
+    /* Emscripten style */
+    .emscripten { 
+        padding-right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+        display: block; 
+    }
+    textarea.emscripten { 
+        font-family: monospace; 
+        width: 80%; 
+    }
+    div.emscripten { 
+        text-align: center; 
+    }
+    div.emscripten_border { 
+        border: 1px solid black; 
+    }
+ 
+   /* the canvas *must not* have any border or padding, 
+        or mouse coords will be wrong */
+    canvas.emscripten { 
+        border: 0px none; 
+        background-color: black; 
+    }
+
+    .spinner {
+      height: 50px;
+      width: 50px;
+      margin: 0px auto;
+      -webkit-animation: rotation .8s linear infinite;
+      -moz-animation: rotation .8s linear infinite;
+      -o-animation: rotation .8s linear infinite;
+      animation: rotation 0.8s linear infinite;
+      border-left: 10px solid rgb(0,150,240);
+      border-right: 10px solid rgb(0,150,240);
+      border-bottom: 10px solid rgb(0,150,240);
+      border-top: 10px solid rgb(100,0,200);
+      border-radius: 100%;
+      background-color: rgb(200,100,250);
+    }
+    @-webkit-keyframes rotation {
+      from {-webkit-transform: rotate(0deg);}
+      to {-webkit-transform: rotate(360deg);}
+    }
+    @-moz-keyframes rotation {
+      from {-moz-transform: rotate(0deg);}
+      to {-moz-transform: rotate(360deg);}
+    }
+    @-o-keyframes rotation {
+      from {-o-transform: rotate(0deg);}
+      to {-o-transform: rotate(360deg);}
+    }
+    @keyframes rotation {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+    }
+    </style>
+  </head>
+  <body class="body">
+    <h1 class="header">Array Visualizer</h1>
+    {% if submit %}
+    <p>
+      <b><span id="name1">{{ form.name1.data }}</span></b>:&nbsp;
+      <span id="array1vals">{{ form.array1.data }}</span>
+    </p>
+    <p>
+      <b><span id="name2">{{ form.name2.data }}</span></b>:&nbsp;
+      <span id="array2vals">{{ form.array2.data }}</span>
+    </p>
+    <p>
+      <b><span id="name3">{{ form.name3.data }}</span></b>:&nbsp;
+      <span id="array3vals">{{ form.array3.data }}</span>
+    </p>
+    {% endif %}
+
+    <button class="startarray button">Start the array slideshow</button>
+    <button class="restart button">Restart</button>
+
+    <div id="container">
+      <div class="jsavcontrols"></div><span class="jsavcounter"></span>
+      <p class="jsavoutput jsavline"></p>
+      <div class="jsavcanvas"></div>
+      <hr/>
+    </div>
+    <div>
+      <h2 class="header">
+        Standard Out results from you C++ implementation
+      </h2>
+      <textarea class="emscripten" id="output" rows="8"></textarea>
+
+      <figure hidden style="overflow:visible;" id="spinner">
+        <div class="spinner"></div>
+        <center style="margin-top:0.5em"><strong>emscripten</strong></center>
+      </figure>
+      <div hidden class="emscripten" id="status">Downloading...</div>
+      <div hidden class="emscripten">
+        <progress value="0" max="100" id="progress" hidden=1></progress>
+      </div>
+      <div hidden class="emscripten_border">
+        <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1>
+        </canvas>
+      </div> 
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="static/lib/jquery.transit.js"></script>
+    <script src="static/lib/raphael.js"></script>
+    <script src="static/build/JSAV-min.js"></script>
+    <script type='text/javascript' src='static/myarray.min.js'></script>
+    {{{ SCRIPT }}}
+  </body>
+</html>
