@@ -7,7 +7,7 @@ My goal has been to create an application that enables students and instructors 
 
 ## License
 
-BoxAndArrow is released under the [BSD 3-Clause License](https://github.com/shelleywong/BoxAndArrow/LICENSE).
+BoxAndArrow is released under the [BSD 3-Clause License](https://github.com/shelleywong/BoxAndArrow/blob/main/LICENSE).
 
 ## Set up your environment
 
