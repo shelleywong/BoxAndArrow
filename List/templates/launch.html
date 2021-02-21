@@ -1,0 +1,68 @@
+<!--
+ Copyright (c) 2021, Shelley Wong
+ All rights reserved.
+
+ This source code is licensed under the BSD-style license found in the
+ LICENSE file in the root directory of this source tree.
+
+ file: List/templates/launch.html
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Linked List Launch Page</title>
+    <link rel="stylesheet" href="static/css/list.css" type="text/css" 
+      title="Linked List css" charset="utf-8" />
+  </head>
+  <body>
+    <h1 class="header">Create a Linked List Visualization</h1>
+    <p class="paragraph">
+        Choose the functions you want to test (in the order you 
+        want to test them). If the function takes integer parameters
+        (such as insert or lookup), include 1 to 10 values to use as 
+        arguments for that function. If the function does not take any 
+        parameters, leave the input as '0' for the array values.
+    </p>
+    <p class="paragraph">
+        You can use the button below to create a randomly generated 
+        array of integers. Copy and paste the array into any of 
+        the array fields below, or create your own comma-separated 
+        list of values.
+    </p>
+    <div>
+      <button class="randomarray button">
+        Generate Formatted Input Array
+      </button>
+      <span id="arrayvals"></span>
+    </div>
+    <form action="" method="post">
+      <table class="input text form">
+        {{ form.csrf_token }}
+        <tr>            
+          <td>{{ form.name1.label }}:</td>
+          <td>{{ form.name1 }}</td>
+          <td>{{ form.array1.label }}:</td>
+          <td>{{ form.array1 }}</td>
+        </tr>
+        <tr>            
+          <td>{{ form.name2.label }}:</td>
+          <td>{{ form.name2 }}</td>
+          <td>{{ form.array2.label }}:</td>
+          <td>{{ form.array2 }}</td>
+        </tr>
+        <tr>            
+          <td>{{ form.name3.label }}:</td>
+          <td>{{ form.name3 }}</td>
+          <td>{{ form.array3.label }}:</td>
+          <td>{{ form.array3 }}</td>
+        </tr>
+      </table>
+      <div class="submit">
+        <input class="button" type="submit" value="Submit">
+      </div>
+    </form>
+    <script type='text/javascript' src='static/launch.js'></script>
+  </body>
+</html>
