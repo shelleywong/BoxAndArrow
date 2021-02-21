@@ -1,0 +1,24 @@
+// Copyright (c) 2021, Shelley Wong
+// All rights reserved.
+//
+// This source code is licensed under the BSD-style license found in the
+// LICENSE file in the root directory of this source tree.
+//
+// file: Array/static/launch.js 
+
+// Generate a formatted array of integers 
+// (this can be randomly generated, or chosen by the user)
+document.querySelector('.randomarray')
+.addEventListener('click', function() {
+    var inputArray = [];
+    var range = 101; // Range of 101 numbers (range: -50 to 50)
+    var half = 50; // Subtract half the range to get pos & neg values
+    var size = prompt('How many elements would you like in your array?');
+
+    inputArray = Array.from(
+        {length: size}, () => Math.floor(Math.random() * (range)) - half);
+
+    //Print the array in the console.
+    console.log(inputArray);
+    document.getElementById("arrayvals").innerHTML = inputArray;
+});

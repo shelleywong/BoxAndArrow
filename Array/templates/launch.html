@@ -1,0 +1,64 @@
+<!--
+ Copyright (c) 2021, Shelley Wong
+ All rights reserved.
+
+ This source code is licensed under the BSD-style license found in the
+ LICENSE file in the root directory of this source tree.
+
+ file: Array/templates/launch.html
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Array Launch Page</title>
+    <link rel="stylesheet" href="static/css/array.css" type="text/css" 
+      title="Array css" charset="utf-8" />
+  </head>
+  <body>
+    <h1 class="header">Create an Array Visualization</h1>
+    <p class="paragraph">
+        Choose the functions you want to test (in the order you 
+        want to test them).
+    </p>
+    <p class="paragraph">
+        You can use the button below to create a randomly generated 
+        array of integers. We suggest testing arrays with no more than 
+        10 elements. Copy and paste the array into any of the array 
+        fields below, or create your own comma-separated list of values.
+        The default value of 0 will be treated as an empty array.
+    </p>
+    <div>
+      <button class="randomarray button">Generate Formatted Array</button>
+      <span id="arrayvals"></span>
+    </div>
+    <form action="" method="post">
+      <table class="input text form">
+        {{ form.csrf_token }}
+        <tr>            
+          <td>{{ form.name1.label }}:</td>
+          <td>{{ form.name1 }}</td>
+          <td>{{ form.array1.label }}:</td>
+          <td>{{ form.array1 }}</td>
+        </tr>
+        <tr>            
+          <td>{{ form.name2.label }}:</td>
+          <td>{{ form.name2 }}</td>
+          <td>{{ form.array2.label }}:</td>
+          <td>{{ form.array2 }}</td>
+        </tr>
+        <tr>            
+          <td>{{ form.name3.label }}:</td>
+          <td>{{ form.name3 }}</td>
+          <td>{{ form.array3.label }}:</td>
+          <td>{{ form.array3 }}</td>
+        </tr>
+      </table>
+      <div class="submit">
+        <input class="button" type="submit" value="Submit">
+      </div>
+    </form>
+    <script type='text/javascript' src='static/launch.js'></script>
+  </body>
+</html>
