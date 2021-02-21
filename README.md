@@ -1,5 +1,7 @@
 # BoxAndArrow
-A repository for my Computer Science Master's Project: *Exploring the Use of Software Visualization in Computer Science Education and Developing a System to Facilitate the Construction of Algorithm Visualizations with JSAV and WebAssembly*. Box and arrow diagrams are often used to help illustrate how data structures and algorithms work in memory. While nothing beats a good whiteboard drawing, this tool aims to provide a clear and precise Web interface for testing and reviewing how data structures function, allowing users to quickly and easily test different inputs and compare their own code with the visualization.<br>
+A repository for my Computer Science Master's Project: *Exploring the Use of Software Visualization in Computer Science Education and Developing a System to Facilitate the Construction of Algorithm Visualizations with JSAV and WebAssembly*.<br>
+
+Box and arrow diagrams are often used to help illustrate how data structures and algorithms work in memory. While nothing beats a good whiteboard drawing, this tool aims to provide a clear and precise Web interface for testing and reviewing how data structures function, allowing users to quickly and easily test different inputs and compare their own code with a visualization.<br>
 
 My goal has been to create an application that enables students and instructors to efficiently map their C++ code to a data structure visualization that can be viewed in a Web browser. This project utilizes [JSAV](http://jsav.io/), an existing and widely used Algorithm Visualization library. Users are able to construct visualizations that work with C++ programs they have written themselves because of the use of [WebAssembly](https://webassembly.org/) and [Emscripten](https://emscripten.org/docs/compiling/WebAssembly.html).
 
@@ -21,11 +23,11 @@ $ flask --version     // Flask 1.1.2 and Werkzeug 1.0.1
 * [GNU Make](https://www.gnu.org/software/make/) builds executable targets from the source code.
 * [Emscripten](https://emscripten.org/docs/introducing_emscripten/about_emscripten.html) is an open-source toolchain that compiles C and C++ code to WebAssembly, enabling the code to be run on the Web.
   * If you have not previously worked with Emscripten, you will need to [download and install the emsdk repo](https://emscripten.org/docs/getting_started/downloads.html).
-  * In order to use Emscripten on a separate project (outside of the emsdk directory), we need to activate the PATH & other environment variables in the current terminal. From the `emsdk` directory, run `source ./emsdk_env.sh`
+  * In order to use Emscripten on a separate project (outside of the emsdk directory), you will need to activate the PATH & other environment variables in the current terminal. From the `emsdk` directory, run `source ./emsdk_env.sh`
 * [Node.js](https://nodejs.org/en/) is used by both Emscripten and JSAV.
 * [Python](https://www.python.org/) is used by Emscripten.
   * This project uses [Flask](https://flask.palletsprojects.com/en/1.1.x/), a lightweight Python web application framework. I recommend that you use Python 3 (Flask supports Python 3.5 and newer).
-  * Since different Python projects have different requirements, it is recommended that you [create a separate virtual environment](https://flask.palletsprojects.com/en/1.1.x/installation/#install-flask) for each Python project. This helps you avoid problems with incompatible library versions or packages installed for other projects. Make sure you install Flask inside of the virtual environment that you plan to use for this project.<br>
+  * Since different Python projects have different requirements, it is also recommended that you [create a separate virtual environment](https://flask.palletsprojects.com/en/1.1.x/installation/#install-flask) for each Python project. This helps you avoid problems with incompatible library versions or packages installed for other projects. Make sure you install Flask inside of the virtual environment that you plan to use for this project.<br>
 
 The Python packages used by this application are listed in `requirements.txt`:
 ```
