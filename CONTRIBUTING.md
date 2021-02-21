@@ -2,7 +2,7 @@
 
 :octocat: Thank you for taking the time to contribute or consider contributions to this project! :+1: :tada: <br>
 
-The following is a set of guidelines for contributing to this GitHub-hosted project. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request. This file is an adaptation of the [Atom CONTRIBUTING.md file](https://github.com/atom/atom/blob/master/CONTRIBUTING.md). While this is not an Atom project, I strive to uphold the [Atom Code of Conduct](https://github.com/atom/atom/blob/master/CODE_OF_CONDUCT.md) and would expect the same of anyone who chooses to participate. :simple_smile: <br>
+The following is a set of guidelines for contributing to this GitHub-hosted project. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request. This file is an adaptation of the [Atom CONTRIBUTING.md file](https://github.com/atom/atom/blob/master/CONTRIBUTING.md). While this is not an Atom project, I strive to uphold the [Atom Code of Conduct](https://github.com/atom/atom/blob/master/CODE_OF_CONDUCT.md) and would expect the same of anyone who chooses to participate. :smiley: <br>
 
 ## What should I know before I get started?
 
