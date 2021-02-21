@@ -5,6 +5,10 @@ Box and arrow diagrams are often used to help illustrate how data structures and
 
 My goal has been to create an application that enables students and instructors to efficiently map their C++ code to a data structure visualization that can be viewed in a Web browser. This project utilizes [JSAV](http://jsav.io/), an existing and widely used Algorithm Visualization library. Users are able to construct visualizations that work with C++ programs they have written themselves because of the use of [WebAssembly](https://webassembly.org/) and [Emscripten](https://emscripten.org/docs/compiling/WebAssembly.html).
 
+## License
+
+BoxAndArrow is released under the [BSD 3-Clause License](https://github.com/shelleywong/BoxAndArrow/LICENSE).
+
 ## Set up your environment
 
 This project was completed on a [VMware](https://www.vmware.com/) virtual machine running Ubuntu 20.04.1 LTS.<br>
