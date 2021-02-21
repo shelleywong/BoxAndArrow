@@ -1,0 +1,22 @@
+# Python Byte-compiled
+__pycache__/
+
+# Environments
+venv/
+
+# Compiled code
+*/templates/list.html
+*/static/list.js
+*/static/list.wasm
+*/templates/array.html
+*/static/array.js
+*/static/array.wasm
+*/templates/tree.html
+*/static/tree.js
+*/static/tree.wasm
+
+# config instance variables
+instance
+
+# macOS
+.DS_Store
