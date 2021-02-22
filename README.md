@@ -9,7 +9,7 @@ My goal has been to create an application that enables students and instructors 
 
 BoxAndArrow is released under the [BSD 3-Clause License](https://github.com/shelleywong/BoxAndArrow/blob/main/LICENSE).
 
-## Set up your environment
+## Set Up Your Environment
 
 This project was completed on a [VMware](https://www.vmware.com/) virtual machine running Ubuntu 20.04.1 LTS.<br>
 
