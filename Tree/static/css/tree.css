@@ -1,0 +1,55 @@
+/* Copyright (c) 2021, Shelley Wong
+ *  All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree.
+ * 
+ * file: Tree/static/css/tree.css
+ */
+
+body {
+    background-color: #e4e6e6;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+table {
+    margin: 10px;
+}
+
+td {
+    padding: 8px;
+}
+
+.header {
+    background-color: #8c2332;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.paragraph {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.button {
+    background-color: #8c2332;
+    color: #ffffff;
+    margin-left: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 5px;
+    border-color: #8c2332;
+    font-family: 'Monaco', monospace;
+}
+
+.form {
+    margin-left: 30px;
+    line-height: 1.6;
+}
+
+#arrayvals {
+    padding: 10px;
+}
