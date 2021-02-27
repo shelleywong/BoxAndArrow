@@ -10,6 +10,8 @@
 
 #ifndef LIST_H
 #define LIST_H
+#include <string>
+using std::string;
 
 class List
 {
@@ -17,7 +19,7 @@ class List
         List();
         ~List();
         void insert(int value);
-        void print();
+        string print();
         int length();
         int lookup(int value);
         bool insert_at_end(int value);
