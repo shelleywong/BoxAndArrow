@@ -31,7 +31,7 @@ $ flask --version     // Flask 1.1.2 and Werkzeug 1.0.1
 * [Node.js](https://nodejs.org/en/) is used by both Emscripten and JSAV.
 * [Python](https://www.python.org/) is used by Emscripten.
   * This project uses [Flask](https://flask.palletsprojects.com/en/1.1.x/), a lightweight Python web application framework. I recommend that you use Python 3 (Flask supports Python 3.5 and newer).
-  * Since different Python projects have different requirements, it is also recommended that you [create a separate virtual environment](https://flask.palletsprojects.com/en/1.1.x/installation/#install-flask) for each Python project. This helps you avoid problems with incompatible library versions or packages installed for other projects. Make sure you install Flask inside of the virtual environment that you plan to use for this project.<br>
+  * Since different Python projects have different requirements, it is also recommended that you [create a separate virtual environment](https://flask.palletsprojects.com/en/1.1.x/installation/#install-flask) for each Python project. This helps you avoid problems with incompatible library versions or packages installed for other projects. Wait to install Flask until you've set up your virtual environment. You will install all of the requirements for this Flask application inside of your virtual environment for this project.<br>
 
 The Python packages used by this application are listed in `requirements.txt`:
 ```
@@ -47,26 +47,50 @@ WTForms==2.3.3
 
 ## Get the Source
 
-On GitHub, fork BoxAndArrow -- this creates a copy of the repository available in your personal account. You can then clone from your personal repo using `git clone` (HTTPS or SSH). Move to the directory (`cd BoxAndArrow`) to start working in it.<br>
+The BoxAndArrow repository can be downloaded from GitHub.
 
-If you notice anything that needs to be addressed, you can [create a new issue](https://github.com/shelleywong/BoxAndArrow/issues). You may also [create a new pull request](https://github.com/shelleywong/BoxAndArrow/pulls). Keep in mind, the code available in this public repository was built for educational use. In the spirit of promoting academic integrity, the examples provided in this repo are kept at a minimum. Please DO NOT try to add code to this repository that implements an actual programming assignment. You ARE encouraged to download this repository and try new examples on your own, in a private repo. More details on contributing to this project can be found in the `CONTRIBUTING.md` file.
+### For personal or classroom use:
+
+If you are interested in using this repo to create a visualization mapped to C++ code that you've written, you are encouraged to download and create a private version of this repository. Choose one of the following options, both of which will allow you to implement the function prototypes and view how your code works alongside the visualizations in this project.<br>
+
+#### Option 1: Download ZIP
+
+1. Make sure you are on the main page of this repository. Click the green **Code** button.
+2. Select the **Download ZIP** option and extract the files. You're ready to begin!
+3. If you would like to create your own GitHub repository for this project, create a new **private** repo through the GitHub UI, then copy the BoxAndArrow directory into your repo.
+
+#### Option 2: Duplicate the repo and create a new private repo
+
+1. Create a new **private** repo through the GitHub UI.
+2. Follow the instructions in the GitHub Docs for [Mirroring a repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/duplicating-a-repository). In this case, the *old-repository* is shelleywong/BoxAndArrow and the *new-repository* is the private repo that you've just created.
+3. Then clone your new private repo and change the current working directory and you're ready to begin.
+```
+$ git clone https://github.com/yourGithubUsername/privateRepo.git
+$ cd privateRepo
+```
+
+### Contributing to this project:
+
+If you notice anything that needs to be addressed, you can [create a new issue](https://github.com/shelleywong/BoxAndArrow/issues). You may also [create a new pull request](https://github.com/shelleywong/BoxAndArrow/pulls). On GitHub, you can fork the BoxAndArrow repo -- this creates a copy of the repository available in your personal account. You can then clone from your personal repo using `git clone` (HTTPS or SSH). Move to the directory (`cd BoxAndArrow`) to start working in it.<br>
+
+Keep in mind, the code available in this public repository was built for educational use. In the spirit of promoting academic integrity, the examples provided in this repo are kept at a minimum. Please DO NOT try to add code to this repository that implements an actual programming assignment. More details on contributing to this project can be found in the `CONTRIBUTING.md` file.<br>
 
 ## Initial Steps
 
-After you set up your environment for the first time, you may need to redo some of the steps listed above (for instance, each time you open up a new terminal).<br>
+After you set up your environment for the first time, you should be good to go, but come back here if something isn't working as expected -- there are various situations when it may be necessary to run the following commands again (e.g. if you've just opened up a new terminal).<br>
 
-Reactivate the PATH and other environment variables for Emscripten:
+Reactivate the PATH and other environment variables for Emscripten (if you're getting the message, `emcc: not found`):
 ```
 $ cd emsdk
 $ source ./emsdk_env.sh
 ```
 
-Create a virtual environment:
+Create a virtual environment (if you don't see a virtual environment directory within the BoxAndArrow directory):
 ```
 $ python3 -m venv venv
 ```
 
-Or activate your virtual environment:
+Or activate your virtual environment (will need to be activated whenever you open a new terminal window):
 ```
 $ . venv/bin/activate
 (venv) $
@@ -86,10 +110,15 @@ $ make
 
 When the code is compiled, files are automatically generated for JavaScript 'glue code', WebAssembly bytecode, and an extra HTML helper file for running the code. The `runscript` file is a simple bash script for (1) moving the generated files to the locations where they will be seen by the Flask app and (2) editing the location of the the JavaScript source code in the generated HTML file.
 ```
+$ make run
+```
+
+The above command includes a step that makes sure the runscript.sh file is executable. After you've done this once, you may use either `make run` or `./runscript.sh` for this step.
+```
 $ ./runscript.sh
 ```
 
-Then you can run the Flask app. If changes are only made to the .py files, or any file that does not connect to Emscripten, you may not need to run the previous commands -- just run the following:
+Now you can run the Flask app! If changes are only made to the .py files, or any file that does not connect to Emscripten, you may not need to run the previous commands -- just run the following:
 ```
 $ flask run
 ```
