@@ -39,13 +39,19 @@ void List::insert(int value){
 }
 
 // @brief Print all of the elements in the list
-void List::print(){
+//
+// Prints to stdout and puts list into a space-separated string
+// that can be used within the JSAV visualization
+string List::print(){
+    string result = "";
     Node *ptr = m_head;
     while(ptr != NULL){
+        result += std::to_string(ptr->m_value) + " ";
         cout<<ptr->m_value<<" ";
         ptr = ptr->m_next;
     }
     cout<<"\n";
+    return result;
 }
 
 // @brief   Find the length of the linked list
@@ -64,9 +70,10 @@ int List::length(){
 // @return the 'index' (location where the value can be 
 //  found in the list (start index at node 0)
 //
-// If the given value is in the list, return the index of 
-// where the node was found in the list; otherwise,
-// return -1 (value was not found in the list)
+// Traverse the list, incrementing an index value as you move from
+// the Node pointer from head to the target value. If the given
+// value is in the list, return the index of where the node was found
+// in the list; otherwise, return -1 (value was not found in the list)
 int List::lookup(int value){
 
     // Write your code here
