@@ -31,7 +31,7 @@ Now you can compile the starter code! The Array Visualizer provides a model solu
 
 1. Run the `make` command -- this uses the Emscripten Compiler Frontend (emcc) to build the code and compile your program so that it can be run on the Web.
 ```
-$ make
+(venv) $ make
 ```
 * When `make` is successfully executed, it generates three files in the BoxAndArrow/Array directory:
     * `array.wasm`: binary code in the WebAssembly format
@@ -40,13 +40,13 @@ $ make
 
 2. Run the `runscript.sh` command.
 ```
-$ ./runscript.sh
+(venv) $ ./runscript.sh
 ```
 * Flask expects all JavaScript and CSS files to be in a `static` folder and all HTML files to be in a `templates` folder. The `runscript.sh` script moves the generated files to the appropriate locations for this application.
 
 3. Start the server
 ```
-$ flask run
+(venv) $ flask run
 ```
 * `flask run` is a command line script that can be used to run a development server. If you run into any errors with `flask run`, make sure you have set the `FLASK_APP` environment variable to point to the `arr.py` application and you are in the same directory as `arr.py`.
 * You should see something similar to the following printed in the terminal:
@@ -58,4 +58,9 @@ $ flask run
  * Debug mode: off
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
-* For the average individual, a development server is all that you need to use this project. The name of your server is likely to be different -- simply copy the listed URL into the browser and include the path to the Array Visualizer application: `http://127.0.0.1:5000/array`
+* You can ignore the warning -- for most individuals using this project, running a development server in a production environment is fine for this project.
+* If you want to, you can silence the warning by setting the FLASK_ENV variable:
+```
+(venv) $ export FLASK_ENV=development
+```
+* The name of your server is likely to be different -- that's normal. To run the program on the Web, simply copy the listed URL into the browser and include the path to the Array Visualizer application: `http://127.0.0.1:5000/array`
