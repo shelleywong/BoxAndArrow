@@ -111,29 +111,42 @@ Within the virtual environment, install the required Python packages. The same p
 
 The Flask app must be told where to find your application in order to use it. When you have multiple Flask applications in the same environment, you will need to run this command (specifying the appropriate app in place of hello.py) each time you change apps:
 ```
-$ export FLASK_APP=hello.py
+(venv) $ export FLASK_APP=hello.py
 ```
+
+Flask applications use a secret key for securely signing session cookies. In the Array, List, and Tree directories, create a subdirectory called `instance`, and within the `instance` directory, create a config.py file. The `instance` directories are ignored by git so that this information is not saved in your commit history.
+```
+(venv) $ mkdir instance
+(venv) $ cd instance
+(venv) $ touch config.py
+```
+
+The secret key should be a long random string of bytes. You can create a secret key using `urandom`:
+```
+$ python -c 'import os; print(os.urandom(16))'
+```
+Copy the output and assign it to the SECRET_KEY variable in the instance/config.py file.
 
 ## General Steps
 
 After your environment is set up and the initial steps are complete, you will need to compile the code and run the Flask app. You will need to recompile when changes are made to any code that the Emscripten Compiler Frontend (emcc) sees (including any C++, JavaScript, and HTML connected to Emscripten).
 ```
-$ make
+(venv) $ make
 ```
 
 When the code is compiled, files are automatically generated for JavaScript 'glue code', WebAssembly bytecode, and an extra HTML helper file for running the code. The `runscript` file is a simple bash script for (1) moving the generated files to the locations where they will be seen by the Flask app and (2) editing the location of the the JavaScript source code in the generated HTML file.
 ```
-$ make run
+(venv) $ make run
 ```
 
 The above command includes a step that makes sure the runscript.sh file is executable. After you've done this once, you may use either `make run` or `./runscript.sh` for this step.
 ```
-$ ./runscript.sh
+(venv) $ ./runscript.sh
 ```
 
 Now you can run the Flask app! If changes are only made to the .py files, or any file that does not connect to Emscripten, you may not need to run the previous commands -- just run the following:
 ```
-$ flask run
+(venv) $ flask run
 ```
 By default, the Flask app runs on `127.0.0.1` (mine was on port 5000).<br>
 
