@@ -19,3 +19,7 @@ make:
 run:
 	chmod +x runscript.sh
 	./runscript.sh
+
+# Delete the executables
+clean:
+	rm templates/array.html static/array.js static/array.wasm
