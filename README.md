@@ -85,15 +85,28 @@ $ cd emsdk
 $ source ./emsdk_env.sh
 ```
 
-Create a virtual environment (if you don't see a virtual environment directory within the BoxAndArrow directory):
+Move to the BoxAndArrow directory. If this is the first time you are using BoxAndArrow, create a virtual environment called venv. You can confirm that the virtual environment exists by checking if there is a `venv` directory within the BoxAndArrow directory:
 ```
+$ cd ../BoxAndArrow
 $ python3 -m venv venv
+$ ls
 ```
 
-Or activate your virtual environment (will need to be activated whenever you open a new terminal window):
+Once you have created a virtual environment, you can activate it with the following command (you will need to activate the virtual environment whenever you open a new terminal window):
 ```
 $ . venv/bin/activate
 (venv) $
+```
+
+If you want to leave the virtual environment, simply run:
+```
+(venv) $ deactivate
+$
+```
+
+Within the virtual environment, install the required Python packages. The same packages are used for all of the Flask applications (arr.py, list.py, and tree.py). From the BoxAndArrow directory, you should see a requirements.txt file. You can install all of the packages using `pip`:
+```
+(venv) $ pip install -r requirements.txt
 ```
 
 The Flask app must be told where to find your application in order to use it. When you have multiple Flask applications in the same environment, you will need to run this command (specifying the appropriate app in place of hello.py) each time you change apps:
