@@ -92,3 +92,11 @@ Write the function `int* EMSCRIPTEN_KEEPALIVE rotate_left(int* arr, int length)`
 ### Exercise 5: Is Sorted
 
 Write the function `bool EMSCRIPTEN_KEEPALIVE is_sorted(int* arr, int length)` that checks if the array is sorted in increasing order. If so, return true. If any values are not sorted in increasing order, return false.
+
+## Hints
+
+* If you see a message that "Something doesn't look right," it means that your results do not match the model solution. Walk through the array visualization and think about what has to happen before you enter the array, while iterating through the array, and after you've exited the array.
+* Remember to test with all positive numbers, all negative numbers, and a combination of numbers.
+* Make sure you declare and initialize any local variables.
+* Be careful that you don't step outside of the valid range of indices for your array (remember that C++ indexing begins at 0).
+* If you've completed everything successfully, try using both the C++ [] operator and pointer arithmetic to traverse the array.
