@@ -71,7 +71,11 @@ When you go to `http://127.0.0.1:5000/array` in the browser, you'll see a button
 
 Each array function is independent (not related to any of the other array functions). You can test the same array of values on different array functions, or different array values on the same array function. It's a good idea to test a variety of input to make sure your function produces the correct solution no matter the input.<br>
 
-Note: Since these functions may be included in C++ code, `extern "C"` ensures that the functions are treated as external C functions, while the `EMSCRIPTEN_KEEPALIVE` declaration adds your functions to the list of exported functions and allows your code to run when compiled to JavaScript. The body of each function does not change.
+Note: Since these functions may be included in C++ code, `extern "C"` ensures that the functions are treated as external C functions, while the `EMSCRIPTEN_KEEPALIVE` declaration adds your functions to the list of exported functions and allows your code to run when compiled to JavaScript. The body of each function does not change.<br>
+
+## Array Exercises
+
+After you complete each exercise, go through the steps to compile and run your code and check that everything is working as expected in the Array Visualizer. In order to see changes in your code, you'll likely need to open the Web Console and disable the cache. For more details, read the section on [Developing for Web](#developing-for-web).
 
 ### Exercise 1: Find Largest
 
@@ -96,7 +100,42 @@ Write the function `bool EMSCRIPTEN_KEEPALIVE is_sorted(int* arr, int length)` t
 ## Hints
 
 * If you see a message that "Something doesn't look right," it means that your results do not match the model solution. Walk through the array visualization and think about what has to happen before you enter the array, while iterating through the array, and after you've exited the array.
-* Remember to test with all positive numbers, all negative numbers, and a combination of numbers.
+* One way to manually debug code is by using print statements. Below the visualization in the browser, you'll see a canvas where text can be displayed. All standard output (cout) statements get printed here. Printing information for debugging can help you confirm what your program is doing as you step through the code.
+* Remember to test with all positive numbers, all negative numbers, and a combination of numbers, and check that your code is producing the results you expect in each case.
 * Make sure you declare and initialize any local variables.
 * Be careful that you don't step outside of the valid range of indices for your array (remember that C++ indexing begins at 0).
 * If you've completed everything successfully, try using both the C++ [] operator and pointer arithmetic to traverse the array.
+
+## Developing for Web
+
+All browsers have a cache that is used to store local Web page resources. This is good for performance; however, if you are currently developing the Web page and making updates to the code, the changes may not show up immediately -- even if you refresh the page, the outdated page may be used instead because it's in the cache. Instructions are included for Firefox and Chrome; other browsers should have similar options.<br> 
+
+* Solution #1: Disable Cache
+    * Open the Web Console
+    * Move to the Network tab
+    * Make sure that there's a checkmark for Disable Cache
+    * Then reload the page
+* Solution #2: Clear the Cache Data
+    * On Firefox, go to the menu and select > Preferences
+        * Click on Privacy and Security
+        * Under the Cookies and Site Data heading, click on Clear Data, make sure that there's a checkmark next to "Cached Web Content", and click Clear
+        * Then reload the page
+    * On Chrome, go to the menu and select > More Tools > Clear Browsing Data...
+        * You can change the time range if you'd like, but make sure that there's a checkmark next to "Cookies and other site data" and "Cached images and files", and click Clear Data
+        * Then reload the page<br>
+
+After you've reloaded the page, check for your updates. If the changes still aren't showing up, try one of the other options.
+
+### The Web Console
+
+The Web console is an important and useful tool for Web developers. If you'd like more information, this is a good [introduction to the Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console).
+
+* Firefox:
+    * Use the shortcut(Windows/Linux): CTRL + Shift + K
+    * Use the shortcut(macOS): Option + Command + K
+    * Go to the menu (upper right hand corner of the browser window) and select > Web Developer > Web Console<br>
+
+* Chrome:
+    * Use the shortcut (Windows/Linux): CTRL + Shift + J
+    * Use the shortcut (macOS): Option + Command + J
+    * Go to the menu (upper right hand corner of the browser window) and select > More Tools > Developer Tools<br>
