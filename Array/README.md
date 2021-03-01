@@ -63,4 +63,32 @@ Now you can compile the starter code! The Array Visualizer provides a model solu
 ```
 (venv) $ export FLASK_ENV=development
 ```
-* The name of your server is likely to be different -- that's normal. To run the program on the Web, simply copy the listed URL into the browser and include the path to the Array Visualizer application: `http://127.0.0.1:5000/array`
+* You may see `localhost` or another slightly different IP address -- that's normal. To run the program on the Web, simply copy the listed URL into the browser and include the path to the Array Visualizer application: `http://127.0.0.1:5000/array`
+
+## Using Array Visualizer in the Browser
+
+When you go to `http://127.0.0.1:5000/array` in the browser, you'll see a button to generate a list of random integers -- use this to create a random array of positive and negative integers that can be copied into any of the Array Values fields. Or, if you'd prefer, simply input your own comma-separated list of integers.<br>
+
+Each array function is independent (not related to any of the other array functions). You can test the same array of values on different array functions, or different array values on the same array function. It's a good idea to test a variety of input to make sure your function produces the correct solution no matter the input.<br>
+
+Note: Since these functions may be included in C++ code, `extern "C"` ensures that the functions are treated as external C functions, while the `EMSCRIPTEN_KEEPALIVE` declaration adds your functions to the list of exported functions and allows your code to run when compiled to JavaScript. The body of each function does not change.
+
+### Exercise 1: Find Largest
+
+Write the function `int EMSCRIPTEN_KEEPALIVE find_largest(int* arr, int length)` to iterate through the `arr` array and find the largest element in the array. The `length` parameter stores the number of array elements. Return the largest value in the array.
+
+### Exercise 2: Calculate the Sum
+
+Write the function `int EMSCRIPTEN_KEEPALIVE calc_sum(int* arr, int length)` that iterates through the array and calculates the sum. Return the sum of the elements in the array.
+
+### Exercise 3: Double the Values
+
+Write the function `int* EMSCRIPTEN_KEEPALIVE double_vals(int* arr, int length)` that doubles all of the values in the array. Emscripten does not support non-const reference parameters, but we can update the values in the array and then return an integer pointer to achieve the same result. 
+
+### Exercise 4: Rotate Left
+
+Write the function `int* EMSCRIPTEN_KEEPALIVE rotate_left(int* arr, int length)` that shifts all of the values in the array left by 1 and moves the first value to the last index of the array. As mentioned in Exercise #4, Emscripten does not support non-const reference parameters, but we can update the values in the array and then return an integer pointer to achieve the same result. 
+
+### Exercise 5: Is Sorted
+
+Write the function `bool EMSCRIPTEN_KEEPALIVE is_sorted(int* arr, int length)` that checks if the array is sorted in increasing order. If so, return true. If any values are not sorted in increasing order, return false.
