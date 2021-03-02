@@ -67,11 +67,11 @@ Now you can compile the starter code! The Array Visualizer provides a model solu
 
 ## Using Array Visualizer in the Browser
 
-When you go to `http://127.0.0.1:5000/array` in the browser, you'll see a button to generate a list of random integers -- use this to create a random array of positive and negative integers that can be copied into any of the Array Values fields. Or, if you'd prefer, simply input your own comma-separated list of integers.<br>
+When you go to `http://127.0.0.1:5000/array` in the browser, you'll see a button that generates a list of random integers. If you find it difficult to think of different sets of input to test, the random generator is a useful option for creating a random array of positive and negative integers that can be copied into any of the Array Values fields. You can also change any of the values or simply input your own comma-separated list of integers.<br>
 
 Each array function is independent (not related to any of the other array functions). You can test the same array of values on different array functions, or different array values on the same array function. It's a good idea to test a variety of input to make sure your function produces the correct solution no matter the input.<br>
 
-Note: Since these functions may be included in C++ code, `extern "C"` ensures that the functions are treated as external C functions, while the `EMSCRIPTEN_KEEPALIVE` declaration adds your functions to the list of exported functions and allows your code to run when compiled to JavaScript. The body of each function does not change.<br>
+Note: The inclusion of `extern "C"` ensures that the functions are treated as external C functions even if they are part of a C++ program. The `EMSCRIPTEN_KEEPALIVE` declaration adds your functions to the list of exported functions and allows your code to run when compiled to JavaScript. The body of each function should be very similar (if not identical) to the same function written in a different application.<br>
 
 ## Array Exercises
 
@@ -87,7 +87,7 @@ Write the function `int EMSCRIPTEN_KEEPALIVE calc_sum(int* arr, int length)` tha
 
 ### Exercise 3: Double the Values
 
-Write the function `int* EMSCRIPTEN_KEEPALIVE double_vals(int* arr, int length)` that doubles all of the values in the array. Emscripten does not support non-const reference parameters, but we can update the values in the array and then return an integer pointer to achieve the same result. 
+Write the function `int* EMSCRIPTEN_KEEPALIVE double_vals(int* arr, int length)` that doubles all of the values in the array. Emscripten does not support non-const reference parameters, but we can update the values in the array and then return an integer pointer to achieve the same result.
 
 ### Exercise 4: Rotate Left
 
@@ -100,15 +100,15 @@ Write the function `bool EMSCRIPTEN_KEEPALIVE is_sorted(int* arr, int length)` t
 ## Hints
 
 * If you see a message that "Something doesn't look right," it means that your results do not match the model solution. Walk through the array visualization and think about what has to happen before you enter the array, while iterating through the array, and after you've exited the array.
-* One way to manually debug code is by using print statements. Below the visualization in the browser, you'll see a canvas where text can be displayed. All standard output (cout) statements get printed here. Printing information for debugging can help you confirm what your program is doing as you step through the code.
+* One way to manually debug code is by using print statements. Below the visualization in the browser, you'll see a canvas where text can be displayed. All standard output (cout) statements get printed here. Printing information for debugging can help confirm what your program is doing as you step through the code.
 * Remember to test with all positive numbers, all negative numbers, and a combination of numbers, and check that your code is producing the results you expect in each case.
 * Make sure you declare and initialize any local variables.
-* Be careful that you don't step outside of the valid range of indices for your array (remember that C++ indexing begins at 0).
+* Be careful that you don't step outside of the valid range of indices for your array (reminder: C++ indexing begins at 0).
 * If you've completed everything successfully, try using both the C++ [] operator and pointer arithmetic to traverse the array.
 
 ## Developing for Web
 
-All browsers have a cache that is used to store local Web page resources. This is good for performance; however, if you are currently developing the Web page and making updates to the code, the changes may not show up immediately -- even if you refresh the page, the outdated page may be used instead because it's in the cache. Instructions are included for Firefox and Chrome; other browsers should have similar options.<br> 
+All browsers have a cache that is used to store local Web page resources. This is good for performance; however, if you are trying to load a Web page that you are currently developing and updating, the changes may not show up immediately. Even if you refresh the page, the browser may load the outdated page instead because it's in the cache. Below, you will find a couple solutions to this issue. Instructions are included for Firefox and Chrome; other browsers should have similar options.<br>
 
 * Solution #1: Disable Cache
     * Open the Web Console
@@ -124,18 +124,18 @@ All browsers have a cache that is used to store local Web page resources. This i
         * You can change the time range if you'd like, but make sure that there's a checkmark next to "Cookies and other site data" and "Cached images and files", and click Clear Data
         * Then reload the page<br>
 
-After you've reloaded the page, check for your updates. If the changes still aren't showing up, try one of the other options.
+After you've reloaded the page, check for your updates. If the changes still aren't showing up, test one of the other options. If none of the options work, you may want to add some additional debugging print statements to trace the flow of your program.
 
 ### The Web Console
 
 The Web console is an important and useful tool for Web developers. If you'd like more information, this is a good [introduction to the Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console).
 
-* Firefox:
+* To open the console on Firefox:
     * Use the shortcut(Windows/Linux): CTRL + Shift + K
     * Use the shortcut(macOS): Option + Command + K
     * Go to the menu (upper right hand corner of the browser window) and select > Web Developer > Web Console<br>
 
-* Chrome:
+* To open the console on Chrome:
     * Use the shortcut (Windows/Linux): CTRL + Shift + J
     * Use the shortcut (macOS): Option + Command + J
     * Go to the menu (upper right hand corner of the browser window) and select > More Tools > Developer Tools<br>
