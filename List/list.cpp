@@ -115,7 +115,7 @@ bool List::remove_head(){
 }
 
 // Binding code
-EMSCRIPTEN_BINDINGS(my_class_example) {
+EMSCRIPTEN_BINDINGS(my_list_class) {
     class_<List>("List")
         .constructor<>()
         .function("insert", &List::insert)
