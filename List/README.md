@@ -103,9 +103,53 @@ Write the function `int List::remove(int value)` that removes the target value f
 
 ## Hints
 
-* Remember to consider all special cases (e.g. empty list, value doesn't exist in the list, etc)!
+* Remember to consider all special cases! These might include an empty list, checking for an element at beginning or end of list, and determining if a value doesn't exist in the list.
 * The `List()` constructor is simple but important -- it initializes the head of the list to NULL. When the head is NULL, you know that you have an empty list. If head is not initialized, it can result in undefined behavior or segmentation faults.
 * The `~List()` destructor shows how to delete all of the Nodes in the list. When you remove any node from the list, you generally need to set a temporary node pointer to the node that's being removed, move the current node pointer to the next node in the list, and then delete the node pointed to by the temporary node pointer.
 * `void List::insert(int value)` shows how to initialize a new node. Make sure the node holds the given value and has a pointer to the appropriate next node. In this case, the new node inserted at the head has a next pointer to the old head of the list.
-* `string List::print()` provides an example of how to traverse a linked list -- start a local node pointer at the beginning of the list, step through the list one node at a time, and exit the list when the local node pointer reaches NULL. In this case, we also return a variable that holds the list in a space-separated string. This string is used by the visualization to check your results with the results expected by the visualization -- if they don't match, the visualization will let you know.
+* `string List::print()` provides an example of how to traverse a linked list -- start a local node pointer at the beginning of the list, step through the list one node at a time, and exit the list when the local node pointer reaches NULL. For this program, we also return a variable that holds the list in a space-separated string. This string is used by the visualization to compare your results with the results expected by the visualization -- if differences are found between the results, the visualization will let you know.
 * One way to manually debug code is by using print statements. Below the visualization in the browser, you'll see a canvas where text can be displayed. All standard output (cout) statements get printed here. Printing information for debugging can help confirm what your program is doing as you step through the code.
+
+### A note about memory
+
+Anytime you run a program that you have written, you are given access to specific portions of memory. In C++, some memory is allocated during runtime when you use the `new` operator. When you try to access memory that is outside of the memory that's been allocated to you, you usually receive a segmentation fault.<br>
+
+Memory in WebAssembly and JavaScript works differently than memory in C++ -- you do not get the same segfaults because all WebAssembly memory addresses are technically accessible. This includes the 0x0 address, which is just a normal location in WebAssembly memory. However, in the Linked List Visualizer, your code WILL have undefined or unexpected behavior if you try to access memory outside of the memory that's been set aside for your program.<br>
+
+Pay attention to the messages provided in the visualization. If you are told that something went wrong or your program produced an unexpected result, there is a good chance that your code would have produced a segfault in a normal C++ environment.<br>
+
+You should also test your code with a variety of inputs and, at each step, make sure the visualization matches your expectations of how the linked list should appear. Buggy code will not always produce segfaults, but it will produce incorrect results in some situations.
+
+## Developing for Web
+
+All browsers have a cache that is used to store local Web page resources. This is good for performance; however, if you are trying to load a Web page that you are currently developing and updating, the changes may not show up immediately. Even if you refresh the page, the browser may load the outdated page instead because it's in the cache. Below, you will find a couple solutions to this issue. Instructions are included for Firefox and Chrome; other browsers should have similar options.<br>
+
+* Solution #1: Disable Cache
+    * Open the Web Console
+    * Move to the Network tab
+    * Make sure that there's a checkmark for Disable Cache
+    * Then reload the page
+* Solution #2: Clear the Cache Data
+    * On Firefox, go to the menu and select > Preferences
+        * Click on Privacy and Security
+        * Under the Cookies and Site Data heading, click on Clear Data, make sure that there's a checkmark next to "Cached Web Content", and click Clear
+        * Then reload the page
+    * On Chrome, go to the menu and select > More Tools > Clear Browsing Data...
+        * You can change the time range if you'd like, but make sure that there's a checkmark next to "Cookies and other site data" and "Cached images and files", and click Clear Data
+        * Then reload the page<br>
+
+After you've reloaded the page, check for your updates. If the changes still aren't showing up, test one of the other options. If none of the options work, you may want to add some additional debugging print statements to trace the flow of your program.
+
+### The Web Console
+
+The Web console is an important and useful tool for Web developers. If you'd like more information, this is a good [introduction to the Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console).
+
+* To open the console on Firefox:
+    * Use the shortcut(Windows/Linux): CTRL + Shift + K
+    * Use the shortcut(macOS): Option + Command + K
+    * Go to the menu (upper right hand corner of the browser window) and select > Web Developer > Web Console<br>
+
+* To open the console on Chrome:
+    * Use the shortcut (Windows/Linux): CTRL + Shift + J
+    * Use the shortcut (macOS): Option + Command + J
+    * Go to the menu (upper right hand corner of the browser window) and select > More Tools > Developer Tools<br>
