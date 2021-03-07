@@ -47,7 +47,7 @@ Tree::Node::~Node() {
 bool Tree::insert(int value) { 
 
     // Write your code here
-
+    return false;
 }
 
 // @brief           Private recursive insert function
@@ -58,7 +58,7 @@ bool Tree::insert(int value) {
 bool Tree::insert_r(int value, Node *&cur_root){
 
     // Write your code here
-
+    return false;
 }
 
 // @brief           Public function to look up value in the tree
@@ -67,7 +67,7 @@ bool Tree::insert_r(int value, Node *&cur_root){
 bool Tree::find(int value) { 
 
     // Write your code here
-
+    return false;
 }
 
 // @brief           Private recursive lookup function
@@ -77,7 +77,7 @@ bool Tree::find(int value) {
 bool Tree::find_r(int value, Node *cur_root){
 
     // Write your code here
-
+    return false;
 }
 
 // @brief           Determine the size of the tree
@@ -86,7 +86,7 @@ bool Tree::find_r(int value, Node *cur_root){
 int Tree::size(){
 
     // Write your code here
-
+    return 0;
 }
 
 // @brief           Private recursive size function
@@ -96,7 +96,7 @@ int Tree::size(){
 int Tree::size_r(Node *cur_root){
 
     // Write your code here
-
+    return 0;
 }
 
 // @brief           Determine if the tree is balanced
@@ -106,7 +106,7 @@ int Tree::size_r(Node *cur_root){
 int Tree::balanced(){
 
     // Write your code here
-
+    return -1;
 }
 
 // @brief           Private recursive balanced function
@@ -120,16 +120,17 @@ int Tree::balanced(){
 int Tree::balanced_r(Node *cur_root){
 
     // Write your code here
-
+    return -1;
 }
 
 // @brief   Print the nodes of the tree in order
 // @return a string of space-separated integers 
 //  (the values of our tree, in increasing order)
 string Tree::print_inorder(){
-
+    
     // Write your code here
-
+    string result = "";
+    return result;
 }
 
 // @brief           Private recursive print-in-order function
@@ -150,7 +151,8 @@ void Tree::print_inorder_r(Node *cur_root, string &result){
 string Tree::print_preorder(){
 
     // Write your code here
-
+    string result = "";
+    return result;
 }
 
 // @brief           Private recursive print-pre-order function
@@ -171,7 +173,8 @@ void Tree::print_preorder_r(Node *cur_root, string &result) {
 string Tree::print_postorder(){
 
     // Write your code here
-
+    string result = "";
+    return result;
 }
 
 // @brief           Private recursive print-post-order function
@@ -201,7 +204,8 @@ void Tree::print_postorder_r(Node *cur_root, string &result) {
 string Tree::helper(int value) { 
 
     // Write your code here
-
+    string result = "";
+    return result;
 }
 
 // @brief           Private recursive function to help our helper()
@@ -222,7 +226,7 @@ string Tree::helper(int value) {
 string Tree::helper_r(int value, Node *cur_root, string &result) {
 
     // Write your code here
-
+    return result;
 }
 
 
