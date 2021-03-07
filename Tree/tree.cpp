@@ -231,7 +231,7 @@ string Tree::helper_r(int value, Node *cur_root, string &result) {
 
 
 // Binding code
-EMSCRIPTEN_BINDINGS(my_class_example) {
+EMSCRIPTEN_BINDINGS(my_tree_class) {
     class_<Tree>("Tree")
         .constructor<>()
         .function("insert", &Tree::insert)
