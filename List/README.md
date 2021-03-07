@@ -71,6 +71,14 @@ When you go to `http://127.0.0.1:5000/list` in the browser, you'll see a button 
 
 Each linked list method is a member function of the Linked List class. Every time you start or restart the Linked List Visualizer, you'll instantiate a new linked list and all functions will impact the same linked list object. You can insert a set of values to start, or you can test how your program handles an empty list. The functions can be run in any order. It's a good idea to test the functions with a variety of input to make sure your Linked List program produces the correct solution no matter the input.<br>
 
+A common way to show how linked lists work is with box and arrow diagrams drawn on a whiteboard. The Linked List Visualizer helps you step through this type of diagram without needing to continually draw and erase boxes and arrows. It also helps minimize the possibility of making incorrect assumptions while creating the diagram. In the visualization, you'll notice:
+
+* Boxes -- these are the Nodes of the linked list. Each box/node contains a value and a `next` pointer.
+* Arrows -- these are the pointers between nodes.
+* After you insert the first node, you'll see an arrow floating above it -- this is the `head` Node pointer. It will always point to the beginning of the list.
+* The last node in the list doesn't have an arrow pointing out of it; instead, this portion of the node has a slash through it to indicate you've reached NULL (the end of the list).
+* The nodes are highlighted and unhighlighted as you traverse the list -- this represents a Node stepping through the list.<br>
+
 Note: This program uses Emscripten Embind to bind C++ functions and classes, exposing them to JavaScript. The `EMSCRIPTEN_BINDINGS()` block at the end of list.cpp creates bindings for the public member functions of the Linked List class. You don't need to change anything in this block; just know that it allows your code to work with JavaScript and modify the visualization in the browser.
 
 ## Linked List Exercises
