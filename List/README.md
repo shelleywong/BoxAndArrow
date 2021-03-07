@@ -91,7 +91,7 @@ Write the function `int List::lookup(int value)` that traverses the linked list 
 
 ### Exercise 3: Remove Head
 
-Write the function `bool List::remove_head()` that removes the node at the head of the list, returning true if a node is removed successfully and false if the list is empty and there are no nodes to remove.
+Write the function `bool List::remove_head()` that removes the node at the head of the list, returning true if a node is removed successfully and false if the list is empty and there are no nodes to remove. Remember to use the delete operator on the Node that is removed, as this is important for proper memory management. You can see how `delete` is used in the provided `~List` destructor.
 
 ### Exercise 4: Insert At End
 
@@ -99,7 +99,7 @@ Write the function `bool List::insert_at_end(int value)` that inserts the given 
 
 ### Exercise 5: Remove Value
 
-Write the function `int List::remove(int value)` that removes the target value from the list. For this implementation, return the "index" of the value removed from the list -- the location of the node in relation to head of the list, using zero-based indexing. Thus, if `value` is at the head, `remove()` should return 0. If `value` is not found in the list, return -1. Otherwise, return the "index" where the value was found and removed.
+Write the function `int List::remove(int value)` that removes the target value from the list. For this implementation, return the "index" of the value removed from the list -- the location of the node in relation to head of the list, using zero-based indexing. Thus, if `value` is at the head, `remove()` should return 0. If `value` is not found in the list, return -1. Otherwise, return the "index" where the value was found and removed. Remember to use the delete operator on the Node that is removed, as this is important for proper memory management. You can see how `delete` is used in the provided `~List` destructor.
 
 ## Hints
 
