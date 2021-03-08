@@ -72,9 +72,9 @@ When you go to `http://127.0.0.1:5000/tree` in the browser, you'll see a button 
 
 Each binary tree method is a member function of the Tree class. Every time you start or restart the Binary Tree Visualizer, you'll instantiate a new binary tree and all functions will impact the same Tree object. You can insert a set of values to start, or you can test how your program handles an empty tree. The functions can be run in any order. It's a good idea to test the functions with a variety of input to make sure your Binary Tree program produces the correct solution no matter the input.<br>
 
-Note: This program uses Emscripten Embind to bind C++ functions and classes, exposing them to JavaScript. The `EMSCRIPTEN_BINDINGS()` block at the end of tree.cpp creates bindings for the public member functions of the Linked List class. Notice that the private Tree member functions are not included, since they will not be called outside of the class. You don't need to change anything in this block; just know that it allows your code to work with JavaScript and modify the visualization in the browser.
+Note: This program uses Emscripten Embind to bind C++ functions and classes, exposing them to JavaScript. The `EMSCRIPTEN_BINDINGS()` block at the end of tree.cpp creates bindings for the public member functions of the Binary Tree class. Notice that the private Tree member functions are not included, since they will not be called outside of the class. You don't need to change anything in this block; just know that it allows your code to work with JavaScript and modify the visualization in the browser.
 
-## Binary Search Tree Properties
+### Binary Search Tree Properties
 
 All binary search trees have the following properties:
 
@@ -86,9 +86,9 @@ All binary search trees have the following properties:
 
 After you complete each exercise, go through the steps to compile and run your code and check that everything is working as expected in the Binary Tree Visualizer. In order to see changes in your code, you'll likely need to open the Web Console and disable the cache. For more details, read the section on [Developing for Web](#developing-for-web).<br>
 
-You'll notice that the binary tree has a set of public member functions and a corresponding set of recursive private member functions. All private helper functions end in *_r (for recursive), so that Emscripten can differentiate the which functions to bind and which to ignore.<br>
+You'll notice that the binary tree has a set of public member functions and a corresponding set of recursive private member functions. All private helper functions end in *_r (for recursive), so that Emscripten can determine which functions to bind and which to ignore.<br>
 
-Make sure you've completed the linked list exercises before you start trying to implement the Tree class. The binary tree data structure is made up of nodes, similar to nodes in a linked list, the main difference being that binary trees have a `left` and `right` node rather than one `next` node. The beginning of the tree is represented by the `m_root` Node pointer. In the Tree constructor, `m_root` is initialized to NULL, meaning the tree is empty.<br>
+Make sure you've completed the linked list exercises (in the List directory) before you start trying to implement the Tree class. The binary tree data structure is made up of nodes that are similar to the nodes in a linked list. The main difference is that binary tree nodes have pointers to a `left` Node and a `right` Node rather than one pointer to a `next` Node. The beginning of the tree is represented by the `m_root` Node pointer. In the Tree constructor, `m_root` is initialized to NULL, meaning the tree is empty.<br>
 
 Read the instructions carefully -- the exercises include tips and pseudocode that can help you understand what you need to do at each step. You can also check out the [Hints](#hints) section for more help with implementing a binary tree and using the Binary Tree Visualizer.<br>
 
@@ -98,11 +98,11 @@ Implement `Tree::Node::Node(int value)` -- this is a constructor that initialize
 
 ### Exercise 2: Tree and Node Destructors
 
-Implement `Tree::~Tree()` and `Tree::Node::~Node()`, the Tree Destructor and the Node Destructor, respectively. You can delete all memory allocated for a binary tree using the C++ `delete` operator. When `delete` is used on an object, it calls the destructor of the object.<br>
+Implement `Tree::~Tree()` and `Tree::Node::~Node()`, the Tree Destructor and the Node Destructor, respectively. A destructor is called when the lifetime of an object ends. If you have allocated memory with `new`, the destructor should free all memory allocated for the tree using the C++ `delete` operator.<br>
 
 In the Tree destructor, use the `delete` operator on the root of the tree, and in the Node destructor, use the `delete` operator on the left and right nodes of the tree. When `delete` is used on the root, it calls the destructor of the root Node object. When the Node object uses the `delete` operator on the left and right nodes, it calls the destructor of the left and right Node objects. This process continues recursively until NULL is reached, then the memory allocated for the Node objects is freed, starting with the leaf nodes and ending with the root node.<br>
 
-You do not explicitly call the Tree or Node destructor, so you cannot see either of these at work in the visualization; however, it is important that you properly manage memory and implement the destructors. In WebAssembly, after an instance of a class is created, it must be deleted. This is already done for you in the provided JavaScript, but it doesn't know anything about how the destructors are implemented, so making sure they work as expected is up to you.
+You do not explicitly call the Tree or Node destructor, so you cannot see either of these at work in the visualization; however, it is important that you properly manage memory and implement the destructors. In WebAssembly, after an instance of a class is created, it must be deleted. This is already done for you in the provided JavaScript; however, the JavaScript code only has the power to call the Tree destructor -- it doesn't know anything about how the destructors are implemented, so making sure the destructors work as expected is up to you.
 
 ### Exercise 3: Insert a Node and Implement the Helper
 
