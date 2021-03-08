@@ -90,7 +90,7 @@ You'll notice that the binary tree has a set of public member functions and a co
 
 Make sure you've completed the linked list exercises before you start trying to implement the Tree class. The binary tree data structure is made up of nodes, similar to nodes in a linked list, the main difference being that binary trees have a `left` and `right` node rather than one `next` node. The beginning of the tree is represented by the `m_root` Node pointer. In the Tree constructor, `m_root` is initialized to NULL, meaning the tree is empty.<br>
 
-Each exercise includes some useful tips, so make sure to read the instructions carefully. Check out the [Hints](#hints) section for more help with implementing a binary tree and using the Binary Tree Visualizer.<br>
+Read the instructions carefully -- the exercises include tips and pseudocode that can help you understand what you need to do at each step. You can also check out the [Hints](#hints) section for more help with implementing a binary tree and using the Binary Tree Visualizer.<br>
 
 ### Exercise 1: Node Constructor
 
@@ -166,23 +166,104 @@ recursive_find(value, current_root):
 
 ### Exercise 5: Print (in-order, pre-order, post-order)
 
+Implement the print functions, `print_inorder`, `print_preorder`, and `print_postorder`. Each of these is a version of a tree traversal, a process of visiting every node in a tree data structure exactly once. Traversals are classified based on the order in which the nodes are visited. An in-order traversal will print the values in ascending sorted order. A pre-order traversal will print the parent (root) node before processing any children (left and right) nodes. A post-order traversal will print all children (left and right) nodes before processing the parent (root) nodes.<br>
 
+All of the public print functions should follow the same basic steps:
+```
+public_print():
+    initialize an empty string called result
+    recursive_print(root, result)
+    return result
+```
+You can use cout statements as well -- all stdout statements are printed to a box below the visualization. A string result is returned so that your results can be printed as part of the visualization.<br>
+
+Note: The `result` string is a space separated string of the values in your tree, printed in the specified order. You can use the std::to_string method from the \<string\> library to convert a numeric value to a sequence of characters that can be concatenated with the result string.
+
+#### In-Order Print
+
+Write the private function `void Tree::print_inorder_r(Node *cur_root, string &result)`:
+```
+recursive_print_inorder(current_root, result):
+    if current_root is not null:
+        recursive_print_inorder(current_root.left, result)
+        add the string value of current_root.value and " " to result
+        recursive_print_inorder(current_root.right, result)
+```
+
+#### Pre-Order Print
+
+Write the private function `void Tree::print_preorder_r(Node *cur_root, string &result)`:
+```
+recursive_print_preorder(current_root, result):
+    if current_root is not null:
+        add the string value of current_root.value and " " to result
+        recursive_print_preorder(current_root.left, result)
+        recursive_print_preorder(current_root.right, result)
+```
+
+#### Post-Order Print
+
+Write the private function `void Tree::print_postorder_r(Node *cur_root, string &result)`:
+```
+recursive_print_postorder(current_root, result):
+    if current_root is not null:
+        recursive_print_postorder(current_root.left, result)
+        recursive_print_postorder(current_root.right, result)
+        add the string value of current_root.value and " " to result
+```
 
 ### Exercise 6: Size
 
+Implement the public `int Tree::size()` function and the private `int Tree::size_r(Node *cur_root)` function, and return the size (the number of nodes in the tree). If the tree is empty, return 0, because there are no nodes in the tree. You will need to traverse all nodes and count each node once. Here are the basic steps to determine the size of a tree with recursion:
 
+* If the current root is null, return 0.
+* Otherwise, return 1 (to count the current root) and make a recursive call to the left child and the right child, adding the result from these calls.
 
 ### Exercise 7: Balanced
 
+Implement the public `int Tree::balanced()` function and the private `int Tree::balanced_r(Node *cur_root)` function that determine if the tree is height-balanced. In this implementation, return -1 if the tree is not height balanced; otherwise, return the height of the tree.
 
+#### Tree Height
+
+The height of a tree is measured as the longest path from a leaf node to the root node. Sometimes this is measured by the number of edges, but in this implementation, height is measured as the number of nodes on the longest path from root to leaf.<br>
+
+* If the tree is empty, the tree is balanced and has a height of 0.
+* If the tree is not empty, height is equal to the maximum level of nodes.
+* If a node is at the root of the tree, it is at level 1.
+* If a node is not at the root of the tree, its level is 1 greater than the level of its parent.
+
+#### Height Balanced
+
+Conditions that determine if a tree T is height-balanced:
+* If T is empty, T is height-balanced.
+* If T is not empty, T is balanced if:
+    * The left subtree of T is balanced
+    * The right subtree of T is balanced
+    * The difference between the heights of the left and right subtrees is less than or equal to 1<br>
+
+If at any point you find that the tree is not balanced, return -1.
+
+#### Steps to determine if tree is height balanced
+
+Here are the basic steps to determine if a tree is height-balanced with recursion:
+```
+recursive_balanced(current_root):
+    if current_root is null:
+        tree has a height of 0 and is balanced, return 0
+    if either left or right subtree of current_root is not balanced:
+        tree is not balanced, return -1
+    else:
+        determine if the left or right subtree is largest;
+        return this value plus 1 (this counts current_node in the height)
+```
 
 ## Hints
 
 * Remember to consider all cases! Is the tree empty? Have you reached a leaf node? Is the value at the current node? Should you check the left or right node?
-* This binary tree implementation uses recursion -- a process of defining a problem in terms of simpler instances of the same problem. In C++, you know that a function is using recursion if the function calls itself. You can think of the Tree as being made up of many smaller trees, where each node is a root with one left node and one right node, each of which is the root of its own smaller binary tree.
+* This binary tree implementation uses **recursion** -- a process of defining a problem in terms of simpler instances of the same problem. In C++, you know that a function is using recursion if the function calls itself. You can think of the Tree as being made up of many smaller trees, where each node is a root with one left node and one right node, each of which is the root of its own smaller binary tree.
+* With recursion, it is important to have at least one **base case** -- a case that causes the recursion to terminate. This is when your function returns without making a recursive call.
 * Many recursive functions have an iterative counterpart, but trees naturally lend themselves to being defined recursively.
 * The worst case time complexity for inserting a value into a binary tree or finding a value in a binary tree is O(n), but the average case time complexity is O(log n). If a binary tree is balanced or nearly balanced, you can halve the number of nodes you need to check at each step.
-* With recursion, it is important to have at least one base case -- a case that causes the recursion to terminate. This is when your function returns without making a recursive call.
 * One way to manually debug code is by using print statements. Below the visualization in the browser, you'll see a canvas where text can be displayed. All standard output (cout) statements get printed here. Printing information for debugging can help confirm what your program is doing as you step through the code.
 
 
