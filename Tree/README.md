@@ -74,6 +74,14 @@ Each binary tree method is a member function of the Tree class. Every time you s
 
 Note: This program uses Emscripten Embind to bind C++ functions and classes, exposing them to JavaScript. The `EMSCRIPTEN_BINDINGS()` block at the end of tree.cpp creates bindings for the public member functions of the Linked List class. Notice that the private Tree member functions are not included, since they will not be called outside of the class. You don't need to change anything in this block; just know that it allows your code to work with JavaScript and modify the visualization in the browser.
 
+## Binary Search Tree Properties
+
+All binary search trees have the following properties:
+
+* All of the nodes in the left subtree have values less than the value of the current root node.
+* All of the nodes in the right subtree have values greater than the value of the current root node.
+* Each subtree in the binary tree is itself a binary tree.<br>
+
 ## Binary Tree Exercises
 
 After you complete each exercise, go through the steps to compile and run your code and check that everything is working as expected in the Binary Tree Visualizer. In order to see changes in your code, you'll likely need to open the Web Console and disable the cache. For more details, read the section on [Developing for Web](#developing-for-web).<br>
@@ -96,7 +104,75 @@ In the Tree destructor, use the `delete` operator on the root of the tree, and i
 
 You do not explicitly call the Tree or Node destructor, so you cannot see either of these at work in the visualization; however, it is important that you properly manage memory and implement the destructors. In WebAssembly, after an instance of a class is created, it must be deleted. This is already done for you in the provided JavaScript, but it doesn't know anything about how the destructors are implemented, so making sure they work as expected is up to you.
 
+### Exercise 3: Insert a Node and Implement the Helper
 
+#### Insert
+
+Implement the public `bool Tree::insert(int value)` function and the private `bool Tree::insert_r(int value, Node *&cur_root)` function. Remember that all nodes are inserted as leaf nodes, and make sure that as you insert, you maintain the binary tree properties.<br>
+
+The public `insert()` should call the private `insert_r()` with `m_root` passed in as the argument for the current root, and `insert_r()` should recursively traverse the tree to find the location to insert `value`.<br>
+
+The private insert function can be expressed as a recursive algorithm:
+```
+recursive_insert(value, current_root):
+    if current_root is null:
+        create a new node with value and insert it at current_root
+        successful insertion, return true
+    if current_root.value equals value being inserted:
+        value is already in the tree, return false
+    if value is less than current_root.value:
+        return recursive_insert(value, current_root.left)
+    if value is greater than current_root.value:
+        return recursive_insert(value, current_root.right)
+```
+
+#### Helper
+
+Implement the public `string Tree::helper(int value)` function and the private `string Tree::helper_r(int value, Node *cur_root, string &result)` function. These helpers are special methods that assist the Binary Tree Visualizer, providing the information it needs to know the path that your `insert` and `remove` functions take before they reach their destination. The helpers make sure that the visualization reflects your C++ Tree implementation.<br>
+
+In the public `helper()`, initialize an empty string called `result` and pass this argument to the private `helper_r()` function, along with `m_root` passed in as the argument for the current root. `helper_r()` should recursively traverse the tree until it reaches a base case:
+```
+recursive_helper(value, current_root, result):
+    if current_root is null:
+        base case reached, return the result string
+    if current_root.value equals value being inserted:
+        add "0" (0 as a string) to result, return the result string
+    if value is less than current_root.value:
+        add "1" (1 as a string) to result
+        return recursive_helper(value, current_root.left, result)
+    if value is greater than current_root.value:
+        add "2" (2 as a string) to result
+        return recursive_helper(value, current_root.right, result)
+```
+
+### Exercise 4: Find
+
+Implement the public `bool Tree::find(int value)` function and the private `bool Tree::find_r(int value, Node *cur_root)` function. This type of tree implementation is sometimes called a binary search tree (BST), an ordered tree, or a sorted binary tree, as it follows the [Binary Search Tree Properties](#binary-search-tree-properties).<br>
+
+The ordering of the nodes means that each comparison can, on average, skip half of the nodes in the tree. Even though the worst case runtime complexity is still linear O(n), the average runtime complexity for functions like find, insert, and remove can be cut in half to a relatively efficient runtime of O(log n).<br>
+
+The find function has a very similar implementation to the insert function:
+```
+recursive_find(value, current_root):
+    if current_root is null:
+        value not found, return false
+    if current_root.value equals value being targeted:
+        value found, return true
+    if value is less than current_root.value:
+        return recursive_find(value, current_root.left)
+    if value is greater than current_root.value:
+        return recursive_find(value, current_root.right)
+```
+
+### Exercise 5: Print (in-order, pre-order, post-order)
+
+
+
+### Exercise 6: Size
+
+
+
+### Exercise 7: Balanced
 
 
 
