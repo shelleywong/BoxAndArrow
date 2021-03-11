@@ -72,6 +72,13 @@ When you go to `http://127.0.0.1:5000/tree` in the browser, you'll see a button 
 
 Each binary tree method is a member function of the Tree class. Every time you start or restart the Binary Tree Visualizer, you'll instantiate a new binary tree and all functions will impact the same Tree object. You can insert a set of values to start, or you can test how your program handles an empty tree. The functions can be run in any order. It's a good idea to test the functions with a variety of input to make sure your Binary Tree program produces the correct solution no matter the input.<br>
 
+A common way to show how binary trees work is by drawing out the nodes of the tree on a whiteboard. The Binary Tree Visualizer helps you step through this type of diagram without needing to continually draw and erase nodes and edges. It also helps minimize the possibility of making incorrect assumptions while creating the diagram. In the visualization, you'll notice:
+
+* Nodes -- each circular node is a root that holds a value and has pointers to the `left` child and `right` child.
+* Edges -- the links between tree nodes. Edges show how all of the nodes in a tree are related.
+* `NULL` -- every instance of NULL in the visualization represents the NULL location in memory. If the tree is empty, the root is set to NULL and all you will see in the visualization is `NULL`. If a node has zero children (a leaf node) or one child, then one or both of its left and right pointers will point to `NULL`.
+* The nodes are highlighted and unhighlighted as you traverse the tree. There is more than one way to traverse a tree, so make sure to think about the path you want to use each time you traverse the tree.<br>
+
 Note: This program uses Emscripten Embind to bind C++ functions and classes, exposing them to JavaScript. The `EMSCRIPTEN_BINDINGS()` block at the end of tree.cpp creates bindings for the public member functions of the Binary Tree class. Notice that the private Tree member functions are not included, since they will not be called outside of the class. You don't need to change anything in this block; just know that it allows your code to work with JavaScript and modify the visualization in the browser.
 
 ### Binary Search Tree Properties
