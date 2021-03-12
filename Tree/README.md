@@ -271,8 +271,25 @@ recursive_balanced(current_root):
 * With recursion, it is important to have at least one **base case** -- a case that causes the recursion to terminate. This is when your function returns without making a recursive call.
 * Many recursive functions have an iterative counterpart, but trees naturally lend themselves to being defined recursively.
 * The worst case time complexity for inserting a value into a binary tree or finding a value in a binary tree is O(n), but the average case time complexity is O(log n). If a binary tree is balanced or nearly balanced, you can halve the number of nodes you need to check at each step.
+* If you get an error that says you may be trying to access memory that you do not have access to, check to see that you are not trying to access one node past the nodes that exist in the tree.
 * One way to manually debug code is by using print statements. Below the visualization in the browser, you'll see a canvas where text can be displayed. All standard output (cout) statements get printed here. Printing information for debugging can help confirm what your program is doing as you step through the code.
 
+### A note about recursion
+
+A recursive function is a function that calls itself. Look out for these common mistakes made with recursion:
+
+* A recursive function without a base case
+* A missing base case -- the function has a base case, but not all possible base cases are covered
+* The recursive step doesn't reduce the problem size
+
+The Binary Tree Visualizer catches many common errors, but you will get a JavaScript exception if you implement a recursive function and forget a base case or don't reduce the problem size with each recursive call. The function will continue calling itself until it runs out of space. In this situation, the visualization will fail and there will be a message in the Web Console:
+
+```
+InternalError: too much recursion (Firefox)
+RangeError: Maximum call stack size exceeded (Chrome)
+```
+
+[Internal Error Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Too_much_recursion)
 
 ## Developing for Web
 
