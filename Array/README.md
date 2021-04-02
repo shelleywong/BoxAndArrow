@@ -131,9 +131,9 @@ After you've reloaded the page, check for your updates. If the changes still are
 The Web console is an important and useful tool for Web developers. If you'd like more information, this is a good [introduction to the Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console).
 
 * To open the console on Firefox:
-    * Use the shortcut(Windows/Linux): CTRL + Shift + K
-    * Use the shortcut(macOS): Option + Command + K
-    * Go to the menu (upper right hand corner of the browser window) and select > Web Developer > Web Console<br>
+    * Use the shortcut(Windows/Linux): CTRL + Shift + I
+    * Use the shortcut(macOS): Option + Command + I
+    * Go to the menu (upper right hand corner of the browser window) and select > Web Developer > Web Developer Tools<br>
 
 * To open the console on Chrome:
     * Use the shortcut (Windows/Linux): CTRL + Shift + J
